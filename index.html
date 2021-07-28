@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS / jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header><h1>JavaScript / JQuery Assignment</h1></header>
+    <hr>
+    <h2>JavaScript:</h2>
+    <div class="ques1">
+        <pre>
+        <b>Question 1: </b>Given below is the speech to text output of a Call center conversation, in the paragraph format
+
+        <b>Task 1:</b> Extract the sentences from this paragraph and display only those which contain more than 3 words in it, along with the sentence
+        number. 
+
+        `Thank you so much for contacting us. Dreamland guest relations. You're speaking with Ronaldo. May I have your name, please? Yes, 
+        sure. My name is robin soleimani. What is your
+        phone number? It is 9876535362 as mentioned in the book Diary. Thank you so much for providing the info!`
+
+
+        <b>Task 2:</b> Mask the personal vital data from the sentences ( if it is present) i.e replace the ‘9876535362’ with ‘XXXXXXXXXX’
+
+        Expected o/p:
+        1. Thank you so much for contacting us.
+        2. You're speaking with Ronaldo.
+        3. May I have your name, please?
+        4. My name is robin soleimani.
+        5. What is your phone number?
+        6. It is ‘XXXXXXXXXX’ as mentioned in the book Diary
+        7. Thank you so much for providing the info! </pre>
+        <div id="ans1"></div>
+    </div><hr>
+    <div class="ques2">
+        <pre>
+        <b>Question 2: </b>Given below an objects representing different teams in Q and #teamMembers in that team
+
+        qTeams = {aaiec: 400, 
+        aaiwc: 60, 
+        qai: 200, 
+        poc: 100,
+        gtm: 50,
+        hr: 10
+        };
+        Write an efficient code to display names of the teams in descending order wrt to the #teamMembers working in the teams.
+        </pre>
+        <div id="ans2"></div>
+    </div>
+    <hr>
+    <h2>JQuery:</h2>
+    <div class="ques3">
+        <pre>
+        <b>Question 3: </b>Use publicly available API which returns 100 comments in the response. This is just the dummy data. After receiving 
+        the data from an API, display it on a webpage
+        </pre>
+    </div>
+    <h2>Data</h2>
+    <div id="ans3"></div>
+    <button><b>Load Data</b></button>
+
+</body>
+<script src="javascript.js"></script>
+<script src="jquery.js"></script>
+<style>
+    
+    #ans1, #ans2{
+        color: black;
+        background-color: yellow;
+    }
+    button{
+        /* background-color: green; */
+        padding: 10px 20px;
+        border: 2px solid green;
+        border-radius: 3px;
+        font-size: 20px;
+    }
+    button:hover{
+        background-color:green;
+        border: 2px solid green;
+    }
+    .infoPallete:hover{
+        background-color: green;
+    }
+</style>
+<script>
+    let res3="";
+    $("button").click(function(){
+        $.get("https://jsonplaceholder.typicode.com/posts", function(data, statusTxt){
+            if(statusTxt == "error")
+                alert("Error!");
+            if(statusTxt == "success"){
+                // console.log(data[0].id,data[0].title);
+                for(var post=0 ; post < 100 ; post++){
+                    res3+='<div id="'+data[post].id+'" class="infoPallete">'+
+                        '<h3 class="title">Title: '+data[post].title+'</h3>'+
+                        '<p class="body">Body: '+data[post].body+'</p></div><hr>'
+                }
+                document.getElementById("ans3").innerHTML = res3;
+            }
+        });
+    });
+        
+</script>
+</html>
