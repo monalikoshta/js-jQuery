@@ -58,13 +58,12 @@
         the data from an API, display it on a webpage
         </pre>
     </div>
-    <h2>Data</h2>
+    <h2 id="any">Data</h2>
     <div id="ans3"></div>
     <button><b>Load Data</b></button>
 
 </body>
 <script src="javascript.js"></script>
-<script src="jquery.js"></script>
 <style>
     
     #ans1, #ans2{
@@ -77,6 +76,7 @@
         border: 2px solid green;
         border-radius: 3px;
         font-size: 20px;
+        margin-bottom: 200px;
     }
     button:hover{
         background-color:green;
@@ -87,19 +87,22 @@
     }
 </style>
 <script>
-    let res3="";
     $("button").click(function(){
         $.get("https://jsonplaceholder.typicode.com/posts", function(data, statusTxt){
             if(statusTxt == "error")
                 alert("Error!");
             if(statusTxt == "success"){
+                // let res3 = "";
                 // console.log(data[0].id,data[0].title);
                 for(var post=0 ; post < 100 ; post++){
-                    res3+='<div id="'+data[post].id+'" class="infoPallete">'+
+                    let res3 ='<div id="'+data[post].id+'" class="infoPallete">'+
                         '<h3 class="title">Title: '+data[post].title+'</h3>'+
-                        '<p class="body">Body: '+data[post].body+'</p></div><hr>'
+                        '<p class="body">Body: '+data[post].body+'</p></div><hr>';
+                    // console.log(res3);
+                    setTimeout(function() {
+                    $(res3).appendTo("#ans3"); 
+                  }, 500*post);
                 }
-                document.getElementById("ans3").innerHTML = res3;
             }
         });
     });
